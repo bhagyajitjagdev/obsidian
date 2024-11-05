@@ -21,7 +21,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-# Verify that the Docker Engine installation is successful
+# Verify Docker Engine installation
 ```
 docker ps
 ```
