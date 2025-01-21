@@ -73,24 +73,32 @@ _Open the port `27017, 27020, 27021, 27022` and create a file called `mongodb-ke
 
 ```cfg
 global
-    log stdout format raw local0
-  
+    log stdout format raw local0
+    maxconn 4096
+
 defaults
-    log     global
-    mode    tcp
-    option  tcplog
-    timeout connect 5s
-    timeout client  30s
-    timeout server  30s
-  
+    log     global
+    mode    tcp
+    option  tcplog
+    option  dontlognull
+    option  tcp-check
+    timeout connect 10s
+    timeout client  1h
+    timeout server  1h
+    timeout check   5s
+
 frontend mongo_front
-    bind *:27017
-    default_backend mongo_back
-  
+    bind *:27017
+    default_backend mongo_back
+
 backend mongo_back
-    server mongo1 <IP>:27020 check inter 3s fall 3 rise 2
-    server mongo2 <IP>:27021 check inter 3s fall 3 rise 2 backup
-    server mongo3 <IP>:27022 check inter 3s fall 3 rise 2 backup
+    balance roundrobin
+    stick-table type string len 256 size 1k expire 1h
+    stick on req.payload(0,256)
+
+    server mongo1 <IP>:27020 check inter 3s fall 3 rise 2
+    server mongo2 <IP>:27021 check inter 3s fall 3 rise 2
+    server mongo3 <IP>:27022 check inter 3s fall 3 rise 2
 ```
 
 ---
