@@ -25,3 +25,17 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ```bash
 docker ps
 ```
+
+# Add User
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+```bash
+newgrp docker
+```
+
+```bash
+docker ps
+```
