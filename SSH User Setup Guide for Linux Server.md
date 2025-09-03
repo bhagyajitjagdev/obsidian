@@ -14,7 +14,7 @@ This guide walks you through creating a new SSH user on your Linux server with c
 
 ```bash
 # Open Git Bash or PowerShell
-cd C:\Batch\keys\intelekt\[username]
+cd C:\Batch\keys\[username]
 ```
 
 _Replace `[username]` with your desired username_
@@ -97,7 +97,7 @@ sudo chmod 600 /home/[username]/.ssh/authorized_keys
 ### 4.1 Test connection from Windows
 
 ```bash
-ssh [username]@[SERVER_IP] -i C:\Batch\keys\intelekt\[username]\[username]_key
+ssh [username]@[SERVER_IP] -i C:\Batch\keys\[username]\[username]_key
 ```
 
 ### 4.2 Verify user limitations
@@ -192,7 +192,7 @@ sudo apt update
 ssh ubuntu@[SERVER_IP] -i [ubuntu-key-path]
 
 # As new user
-ssh [username]@[SERVER_IP] -i C:\Batch\keys\intelekt\[username]\[username]_key
+ssh [username]@[SERVER_IP] -i C:\Batch\keys\[username]\[username]_key
 ```
 
 ### User privilege levels
